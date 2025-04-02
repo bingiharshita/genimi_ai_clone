@@ -1,0 +1,328 @@
+/* font import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "poppins", serif;
+}
+
+:root {
+    --text-color: #edf3ff;
+    --subheading-color: #97a7ca;
+    --placeholder-color: #c3cdde;
+    --primary-color: #121212;
+    --secondary-color: #1e1e1e;
+    --secondary-hover-color: #333e58;
+    --scrollbar-color: #626a7f;
+    --message-background-user: #1e293b;
+    --message-background-bot: #272727;
+    --message-text-color: #e2e8f0;
+    --input-background: #272727;
+    --input-text-color: #d1d5db;
+    --send-button-color: #4f46e5;
+    --send-button-hover-color: #6366f1;
+    --suggestion-background: #272727;
+    --suggestion-text-color: #e0f2fe;
+    --bot-icon-color: #1d7efd; /* Added for the blue star icon */
+}
+
+body {
+    color: var(--text-color);
+    background: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    padding: 32px;
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.app-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.container :where(.app-header, .prompt-wrapper, .disclaimer-text) {
+    margin: 0;
+    width: 100%;
+    padding: 0;
+}
+
+.container .app-header {
+    margin-top: 0;
+    text-align: left;
+}
+
+.app-header .heading {
+    font-size: 2.5rem;
+    width: auto;
+    background: linear-gradient(to right, #1d7efd, #8f6fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+.app-header .sub-heading {
+    color: var(--subheading-color);
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.suggestions {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    overflow-x: auto;
+}
+
+.suggestions-item {
+    background: var(--suggestion-background);
+    color: var(--suggestion-text-color);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-align: left;
+    min-width: 250px;
+}
+
+.suggestions-item:hover {
+    background: #333333;
+}
+
+.suggestions-item .text {
+    margin-right: 0;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.suggestion-icon {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.suggestion-icon span {
+    width: 20px;
+    height: 20px;
+}
+
+.prompt-container {
+    margin-top: auto;
+    padding: 10px;
+    background: var(--secondary-color);
+    border-radius: 8px;
+}
+
+.prompt-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.prompt-form {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    background: var(--input-background);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.prompt-input {
+    flex-grow: 1;
+    border: none;
+    background: transparent;
+    padding: 10px;
+    font-size: 1rem;
+    color: var(--input-text-color);
+    outline: none;
+}
+
+.prompt-input::placeholder {
+    color: var(--placeholder-color);
+}
+
+.prompt-actions {
+    display: flex;
+    align-items: center;
+}
+
+.prompt-actions button {
+    background: transparent;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: var(--placeholder-color);
+}
+
+#send-prompt-btn i {
+    color: var(--send-button-color);
+    font-size: 1.2rem;
+}
+
+#send-prompt-btn:hover i {
+    color: var(--send-button-hover-color);
+}
+
+#theme-toggle-btn, #clear-chat-btn {
+    background: var(--secondary-hover-color);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: var(--placeholder-color);
+    margin-left: 10px;
+}
+
+#theme-toggle-btn:hover, #clear-chat-btn:hover {
+    background: #4a5568;
+}
+
+.disclaimer-text {
+    font-size: 0.8rem;
+    color: var(--placeholder-color);
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Chat Container Styles */
+.chats-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 20px; /* Rounded message bubbles */
+    width: fit-content;
+    max-width: 80%;
+}
+
+.user-message {
+    background: var(--message-background-user);
+    align-self: flex-end;
+    margin-left: auto;
+    color: var(--message-text-color);
+}
+
+.bot-message {
+    background: var(--message-background-bot);
+    align-self: flex-start;
+    color: var(--message-text-color);
+    display: flex;
+    align-items: flex-start;
+}
+
+.avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.message-text {
+    display: inline-block;
+}
+
+/* Bot Message Icon (Blue Star) */
+.bot-message::before {
+    content: "✦"; /* Unicode for a star */
+    color: var(--bot-icon-color);
+    margin-right: 5px;
+    font-size: 1.2rem;
+}
+
+/* Action Icons */
+.message-actions {
+    display: flex;
+    margin-top: 10px;
+}
+
+.message-actions button {
+    background: transparent;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    color: var(--placeholder-color);
+    font-size: 1.1rem;
+    margin-right: 8px;
+}
+.file-message {
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+.message { /* Existing message styles */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.user-message { /* Existing user message styles */
+    background-color: #e0f7fa; /* Example user background color */
+    align-self: flex-end;
+}
+
+.bot-message { /* Existing bot message styles */
+    background-color: #f0f0f0; /* Example bot background color */
+    align-self: flex-start;
+}
+
+.file-message { /* File message styles */
+    background-color: #f8f8f8; /* Light gray background */
+    align-self: flex-start; /* Align to the left (like bot messages) */
+    border: 1px solid #ddd; /* Add a subtle border */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+/* Optional: Avatar for file messages */
+.file-message .avatar-wrapper {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 10px;
+}
+
+.file-message .avatar-wrapper img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.file-message p {
+    margin: 5px 0;
+}
+
+.file-message pre {
+    background-color: #f0f0f0;
+    padding: 8px;
+    border-radius: 4px;
+    overflow-x: auto;
+}
